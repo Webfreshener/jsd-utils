@@ -2,7 +2,8 @@
   "author": "Van Carney",
   "name": "obj-utils",
   "description": "Small Collection of Object Utilities",
-  "version": "0.0.1",
+  "keywords":["object", "utilities", "querify", "encode", "type", "compare", "utility"],
+  "version": "0.0.2",
   "preferGlobal": false,
   "main":"./index,js",
   "licenses": [
@@ -16,7 +17,7 @@
     "url": "https://github.com/vancarney/obj-utils.git"
   },
   "dependencies": {
-    "fun-utils":">=0.0.1"
+    "fun-utils":">=0.0.2"
   },
   "devDependencies": {
     "coffee-script": ">=1.7.1",
