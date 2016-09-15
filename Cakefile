@@ -6,6 +6,9 @@ fs = require 'fs'
 # import Spawn and Exec from child_process
 {spawn, exec, execFile}=require 'child_process'
 
+{_} = require 'lodash'
+_.templateSettings =
+  interpolate: /'\{\{(.+?)\}\}';/g
 
 # colors
 red   = "\u001b[0;31m"
@@ -33,23 +36,28 @@ exts='coffee|jade'
 # Begin Callback Handlers
 # Callback From 'coffee'
 coffeeCallback=()->
-  # exec 'cp lib/sparse.js ../sparse-demo/src/assets/javascript'
-  # minify()
+  _t = _.template fs.readFileSync '/tmp/index.js', 'utf8'
+  str = fs.readFileSync '/tmp/classes.js', 'utf8'
+  str = str.substr(str.indexOf('\n')+1, str.length-1).replace /\n/g, "\n  "
+  fs.writeFileSync 'lib/wf-utils.js',  _t classes: str
+  minify()
 # Callback From 'docco'
 doccoCallback=()->
   # exec "rm -rf ../sparse-pages/docs; mv docs ../sparse-pages"
 # Begin Tasks
 # ## *build*
 # Compiles Sources
+manifest = require "./src/manifest.json"
+# Begin Tasks
+# ## *build*
+# Compiles Sources
 task 'build', 'Compiles Sources', ()-> build -> log ':)', green
 build = ()->
-  # From Module 'coffee'
-  
-  # Enable coffee-script compiling
-  #launch 'coffee', (['-j','lib/sparse.js', '-c', 'src/sparse.coffee', 'src/classes/*']), coffeeCallback
-
-  # console.log "coffee --join lib/api.js --compile #{apiFiles.files.join(' ').replace(/('|\")/g, '')}"
-  exec "coffee -b -c -o lib src", coffeeCallback
+  console.log "coffee --join lib/schemaroller.js --compile #{manifest.files.join(' ').replace(/('|\")/g, '')}"
+  # exec "coffee --join lib/rikki-tikki-client.js --compile #{manifest.files.join(' ').replace(/('|\")/g, '')}", coffeeCallback
+  exec "coffee -o /tmp -c src/index.coffee", =>
+    # console.log "#{manifest.files.join(' ').replace(/('|\")/g, '')}"
+    exec "coffee --join /tmp/classes.js -b --compile #{manifest.files.join(' ').replace(/('|\")/g, '')}", coffeeCallback
 # ## *watch*
 # watch project src folders and build on change
 task 'watch', 'watch project src folders and build on change', ()-> watch -> log ':)', green

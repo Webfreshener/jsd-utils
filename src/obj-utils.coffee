@@ -1,8 +1,3 @@
-global = exports ? window
-'use strict'
-## Requires fun-utils
-Fun = require 'fun-utils'
-global.Obj = Obj = {}
 #### getTypeOf(object)
 # returns  name of Object type as string
 Obj.getTypeOf = (obj)-> 

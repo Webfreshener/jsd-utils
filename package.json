@@ -1,11 +1,23 @@
 {
-  "author": "Van Carney",
-  "name": "obj-utils",
-  "description": "Small Collection of Object Utilities",
-  "keywords":["object", "utilities", "querify", "encode", "type", "compare", "utility"],
-  "version": "0.0.2",
+  "author": "Van Carney <carney.van@gmail.com>",
+  "name": "wf-utils",
+  "description": "Small collection of utilities for Objects, Functions and Strings",
+  "keywords": [
+    "object",
+    "function",
+    "string",
+    "utilities",
+    "querify",
+    "encode",
+    "type",
+    "compare",
+    "utility",
+    "capitalize",
+    "stripnull"
+  ],
+  "version": "0.1.0",
   "preferGlobal": false,
-  "main":"./index,js",
+  "main": "./index,js",
   "licenses": [
     {
       "type": "MIT",
@@ -14,18 +26,17 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/vancarney/obj-utils.git"
+    "url": "https://github.com/webfreshener/wf-utils.git"
   },
-  "dependencies": {
-    "fun-utils":">=0.0.2"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "coffee-script": ">=1.7.1",
-    "mocha": ">=1.12.0",
-    "chai": ">=1.7.2",
-    "docco": ">=0.6.2"
+    "chai": "^3.5.0",
+    "coffee-script": "^1.10.0",
+    "docco": "^0.7.0",
+    "lodash": "^4.15.0",
+    "mocha": "^3.0.2"
   },
-  "homepage": "https://github.com/vancarney/obj-utils.git",
+  "homepage": "https://github.com/webfreshener/wf-utils.git",
   "scripts": {
     "test": "cake test"
   }
