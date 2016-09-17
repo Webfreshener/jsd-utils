@@ -53,7 +53,7 @@ manifest = require "./src/manifest.json"
 # Compiles Sources
 task 'build', 'Compiles Sources', ()-> build -> log ':)', green
 build = ()->
-  console.log "coffee --join lib/schemaroller.js --compile #{manifest.files.join(' ').replace(/('|\")/g, '')}"
+  console.log "coffee --join /tmp/classes.js -b --compile #{manifest.files.join(' ').replace(/('|\")/g, '')}"
   # exec "coffee --join lib/rikki-tikki-client.js --compile #{manifest.files.join(' ').replace(/('|\")/g, '')}", coffeeCallback
   exec "coffee -o /tmp -c src/index.coffee", =>
     # console.log "#{manifest.files.join(' ').replace(/('|\")/g, '')}"
