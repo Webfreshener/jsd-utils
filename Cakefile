@@ -39,7 +39,7 @@ coffeeCallback=()->
   _t = _.template fs.readFileSync '/tmp/index.js', 'utf8'
   str = fs.readFileSync '/tmp/classes.js', 'utf8'
   str = str.substr(str.indexOf('\n')+1, str.length-1).replace /\n/g, "\n  "
-  fs.writeFileSync 'lib/wf-utils.js',  _t classes: str
+  fs.writeFileSync "#{__dirname}/lib/wf-utils.js",  _t classes: str
   minify()
 # Callback From 'docco'
 doccoCallback=()->

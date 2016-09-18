@@ -1,3 +1,4 @@
 'use strict'
-(_scope = exports ? window).wfUtils = Fun: {}, Obj: {}, Str: {}
+_global = exports ? window unless _global?
+_global.wf = wfUtils: Fun: {}, Obj: {}, Str: {}
 '{{classes}}'
