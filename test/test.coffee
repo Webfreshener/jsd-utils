@@ -1,5 +1,5 @@
 (chai = require 'chai').should()
-{Fun, Obj, Str} = (require '../lib/wf-utils').wf.wfUtils
+{Fun, Obj, Str} = (require '../lib/wf-utils').wfUtils
 
 class MyObj
   constructor:->
