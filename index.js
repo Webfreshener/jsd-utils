@@ -1,1 +1,1 @@
-module.exports = require('./lib/wf-utils').Obj;
+module.exports = require('./lib/wf-utils');
