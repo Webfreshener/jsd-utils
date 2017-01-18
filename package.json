@@ -31,10 +31,11 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
-    "coffee-script": "^1.10.0",
-    "docco": "^0.7.0",
-    "lodash": "^4.15.0",
-    "mocha": "^3.0.2"
+    "eslint": "^2.13.1",
+    "eslint-config-loopback": "^4.0.0",
+    "gulp": "^3.9.1",
+    "mocha": "^3.2.0",
+    "nsp": "^2.1.0"
   },
   "homepage": "https://github.com/webfreshener/wf-utils.git",
   "scripts": {

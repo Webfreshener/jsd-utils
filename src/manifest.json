@@ -1,7 +1,0 @@
-{
-  "files":[
-    "./src/fun-utils.coffee",
-    "./src/obj-utils.coffee",
-    "./src/str-utils.coffee"
-  ]
-}

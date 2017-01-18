@@ -1,7 +1,7 @@
 {
-  "name": "obj-utils",
+  "name": "wf-utils",
   "version": "0.0.1",
-  "main": "lib/fun-utils.js",
+  "main": "lib/wf-utls.js",
   "ignore": [
     ".jshintrc",
     "**/*.txt",
@@ -11,9 +11,6 @@
     "package.json",
     "src"
   ],
-  "dependencies": {
-    "fun-utils": ">=0.0.1"
-  },
   "devDependencies": {
   }
 }
