@@ -25,8 +25,8 @@ import babel from "gulp-babel";
 import jshint from "gulp-jshint";
 // build cleaning
 import clean from "gulp-clean";
-// file templating
-import inject from "gulp-inject-file";
+// webpack
+import webpack from "gulp-webpack";
 // doc generation
 import docs from "gulp-documentation";
 // sourcemap generation
@@ -40,6 +40,7 @@ const paths = {
   src: "src",
   dest: "build"
 };
+
 /* ==================
  * 
  * Docs & Code Validation
@@ -53,6 +54,7 @@ gulp.task("docs",  () => {
 	.pipe(docs("html"))
 	.pipe( gulp.dest("docs") );
 });
+
 /**
  * runs jshint
  */
@@ -63,6 +65,7 @@ gulp.task("jshint", () => {
 //	.pipe( jshint.reporter( "fail" ) )
 	.pipe( gulp.dest( "./lint.txt" ) );
 });
+
 /* ==================
  * 
  * Testing
@@ -71,11 +74,12 @@ gulp.task("jshint", () => {
 /**
  * runs mocha tests
  */
-gulp.task("test", ["build-tests"], () => {
+gulp.task("test", ["build"], () => {
 	gulp.src("./test/*.js", {read: false})
     // gulp-mocha needs filepaths so you can"t have any plugins before it
     .pipe(mocha({reporter: "spec"}))
 });
+
 /* ==================
  * 
  * Code Building
@@ -88,58 +92,20 @@ gulp.task("clean-js", function () {
 	  return gulp.src(["./lib/**/*.js","./lib/**/*.js.map"], {read: false})
 	    .pipe(clean());
 	});
+
 /**
- * Clean Up 
+ * Catch-all Clean-up Helper
  */
-gulp.task("clean-tests", function () {
-//	  return gulp.src(["./test/**/*.js","./test/**/*.*.js"], {read: false})
-//	    .pipe(clean());
-	});
-/**
- * cleans Compiled JS and Tests
- */
-gulp.task("clean", ["clean-js", "clean-tests"]);
-/**
- * packages npm libs with `browserify` for build injection
- */
-gulp.task("package", () =>{
-    gulp.src( browserify_manifest )
-    .pipe(browserify({
-      insertGlobals : false,
-      debug : !gulp.env.production
-    }))
-    .pipe(rename("index.js"))
-    .pipe(gulp.dest("./include"));
-});
+gulp.task("clean", ["clean-js"]);
+
 /**
  * builds js sources for distribution
  * - cleans existing js files located in `paths.dest`
  * - builds js sources located in `paths.src`
  * - uses babel to compile to es5
  */
-gulp.task("build", ["clean-js"], () => {
-	gulp.src(`src/index.js`)
-	.pipe(inject({
-		pattern: "//--\\s*inject:\\s*<filename>"
-	}))
-	.pipe(sourcemaps.init())
-	  .pipe( babel({
-		  presets: ["es2015"]
-	  }))
-	.pipe(concat(`${_APP_NAME_}.js`))
-	.pipe(sourcemaps.write("."))
-	.pipe(gulp.dest("./lib"));
-});
-
-gulp.task("build-tests", ["clean-tests"], () => {
-	gulp.src("src/index.js")
-	.pipe(inject({
-		pattern: "//--\\s*inject:\\s*<filename>"
-	}))
-	.pipe(sourcemaps.init())
-	  .pipe( babel({
-		  presets: ["es2015"]
-	  }))
-	.pipe(rename({extname: ".js"}))
-	.pipe(gulp.dest("test/build"));
+gulp.task("build", ["clean"], () => {
+    return gulp.src('src/index.js')
+        .pipe(webpack(require('./webpack.config.js')))
+        .pipe(gulp.dest('lib/'));
 });

@@ -1,3 +1,5 @@
+const Str = {};
+
 /**
  * @param string
  * @returns capitalized string
@@ -18,3 +20,5 @@ Str.stripNull = function(string){
   if (typeof string === 'undefined') { return ''; }
   return string.replace(/\0/g, '');
 };
+
+module.exports = Str;

@@ -1,3 +1,4 @@
+const Fun = {};
 /**
  * Returns name of provided function
  * @param fun
@@ -75,3 +76,5 @@ Fun.natives = {
   String,
   Function
 };
+
+module.exports = Fun;
