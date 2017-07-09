@@ -1,3 +1,5 @@
+const Fun = require("./function");
+const Obj = {};
 /**
  * returns  name of Object type as string
  * @param obj
@@ -45,3 +47,5 @@ function __range__(left, right, inclusive) {
   }
   return range;
 }
+
+module.exports = Obj;

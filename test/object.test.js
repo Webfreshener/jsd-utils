@@ -1,6 +1,6 @@
 "use strict";
 import {should, expect} from "chai";
-import {Obj} from "./build";
+import {Obj} from "../lib/wf-utils";
 should();
 class MyObj {
     constructor() {

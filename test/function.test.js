@@ -1,6 +1,6 @@
 "use strict";
 import {should, expect} from "chai";
-import {Fun} from "./build";
+import {Fun} from "../lib/wf-utils";
 should();
 
 class Funct {

@@ -1,6 +1,6 @@
 "use strict";
 import {should, expect} from "chai";
-import {Str} from "./build";
+import {Str} from "../lib/wf-utils";
 should();
 describe("Str-Utils Tests", ()=>{
     it("should capitalize string", ()=>{

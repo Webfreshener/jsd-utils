@@ -21,6 +21,8 @@ node_modules/*
 ########################
 *.env
 .project
+.idea/*
+*.iml
 
 # Packages #
 ############
