@@ -1,10 +1,10 @@
-wf-utils
+jsd-utils
 =========
 
 Small Collection of Object Utilities
 
-[![Build Status](https://travis-ci.org/vancarney/obj-utils.png)](https://travis-ci.org/vancarney/obj-utils)
-[![NPM Version](http://img.shields.io/npm/v/obj-utils.svg)](https://www.npmjs.org/package/obj-utils)
+[![Build Status](https://travis-ci.org/webfreshener/jsd-utils.png)](https://travis-ci.org/webfreshener/jsd-utils)
+[![NPM Version](http://img.shields.io/npm/v/jsd-utils.svg)](https://www.npmjs.org/package/jsd-utils)
 
 
 Methods
