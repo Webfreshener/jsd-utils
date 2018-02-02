@@ -7,10 +7,9 @@ module.exports ={
         entry: './src/index.js'
     },
     output: {
-        filename: 'wf-utils.js',
-        path: path.resolve(__dirname, 'lib'),
-        library: "wfUtils",
+        filename: 'jsd-utils.js',
+        path: path.resolve(__dirname, 'dist'),
+        library: "jsdUtils",
         libraryTarget: "umd",
-        auxiliaryComment: "Test Comment"
     }
 };

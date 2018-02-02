@@ -1,11 +1,22 @@
-const _o = {};
-_o.Fun = require('./function');
-_o.Obj = require('./object');
-_o.Str = require('./string');
-_o.exists = function(value) {
+/**
+ * @public
+ */
+export {Fun} from './function';
+/**
+ * @public
+ */
+export {Obj} from './object';
+/**
+ * @public
+ */
+export {String} from './string';
+
+/**
+ * returns false if value is `null` or `undefined`
+ * @public
+ * @param value
+ * @returns {boolean}
+ */
+export const exists = (value) => {
     return typeof value !== 'undefined' && value !== null;
 };
-// function exists(value) {
-//     return typeof value !== 'undefined' && value !== null;
-// };
-module.exports = _o;
