@@ -141,6 +141,7 @@ class Fun {
         if (fun.constructor.name === "Function") {
             fun = new fun();
         }
+        let __ = null;
         if ((__ = this.getFunctionName(fun.constructor)) !== null) {
             return __;
         } else {
