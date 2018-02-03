@@ -70,7 +70,7 @@ export class Fun {
         if (typeof fun !== 'function') {
             return fun;
         }
-
+        let __ = null;
         if (((__ = fun.toString()).match(/.*\[native code\].*/)) != null) {
             return `Native::${this.getFunctionName(fun)}`;
         } else {
