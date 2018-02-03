@@ -9,7 +9,7 @@ export {Obj} from './object';
 /**
  * @public
  */
-export {String} from './string';
+export {Str} from './string';
 
 /**
  * returns false if value is `null` or `undefined`

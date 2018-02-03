@@ -84,7 +84,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object__ = __webpack_require__(7);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Obj", function() { return __WEBPACK_IMPORTED_MODULE_1__object__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__string__ = __webpack_require__(8);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "String", function() { return __WEBPACK_IMPORTED_MODULE_2__string__["String"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Str", function() { return __WEBPACK_IMPORTED_MODULE_2__string__["a"]; });
 /**
  * @public
  */
@@ -2384,7 +2384,7 @@ class Str {
         return string.replace(/\0/g, '');
     }
 }
-/* unused harmony export Str */
+/* harmony export (immutable) */ __webpack_exports__["a"] = Str;
 ;
 
 
