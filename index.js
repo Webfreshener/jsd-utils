@@ -1,1 +1,1 @@
-module.exports = require('./dist/wf-utils');
+module.exports = require('./dist/jsd-utils');
