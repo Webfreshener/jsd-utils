@@ -1,22 +1,28 @@
 /**
  * @public
  */
-export {Fun} from './function';
+import {Fun} from './function';
 /**
  * @public
  */
-export {Obj} from './object';
+import {Obj} from './object';
 /**
  * @public
  */
-export {Str} from './string';
-
+import {Str} from './string';
 /**
  * returns false if value is `null` or `undefined`
  * @public
  * @param value
  * @returns {boolean}
  */
-export const exists = (value) => {
+const exists = (value) => {
     return typeof value !== 'undefined' && value !== null;
+};
+
+export default {
+    Fun: Fun,
+    Obj: Obj,
+    Str: Str,
+    exists: exists,
 };
