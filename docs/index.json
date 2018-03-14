@@ -1,0 +1,727 @@
+[
+  {
+    "__docId__": 0,
+    "kind": "file",
+    "name": "src/function.js",
+    "content": "import {exists} from './index'\n/**\n * @public\n */\nexport class Fun {\n    /**\n     * Returns name of provided function\n     * @param fun\n     * @returns {*}\n     */\n    static getFunctionName(fun) {\n        let n = fun.toString().match(/function+\\s{1,}([a-zA-Z_0-9\\$]*)/);\n        return (n !== null) ? n[1] : null\n    }\n\n    /**\n     * Attempts to safely determine name of the Class Constructor returns null if undefined\n     * @param fun\n     * @returns {*}\n     */\n    static getConstructorName(fun) {\n        if (fun.constructor.name === \"Function\") {\n            fun = new fun();\n        }\n        let __ = null;\n        if ((__ = this.getFunctionName(fun.constructor)) !== null) {\n            return __;\n        } else {\n            return null;\n        }\n    }\n\n    /**\n     * Invokes a Constructor with optional arguments array\n     * @param constructor\n     * @param args\n     */\n    static construct(constructor, args) {\n        return new ( constructor.bind.apply(constructor, [null].concat(args)) );\n    }\n\n    /**\n     * returns an arbitrary Function from array\n     * @returns {function(this:null)}\n     */\n    static get factory() {\n        return Fun.construct.bind(null, Function)\n    }\n\n    /**\n     * creates function from string (simple functions only -- does not support nesting)\n     * @param string\n     * @returns {*}\n     */\n    static fromString(string) {\n        let m = string.replace(/\\n/g, '').replace(/[\\s]{2,}/g, '');\n        if ((m = m.match(/^function+[\\s]{1,}[a-zA-Z0-9_]*\\(([a-zA-Z0-9_\\s,]*)\\)+\\s?\\{+(.*)\\}+$/) ) !== null) {\n            return Fun.factory([].concat(m[1], m[2]));\n        }\n        let __ = string.match(new RegExp(`^Native::(${( Object.keys(this.natives) ).join('|')})+$`));\n        return __ !== null ? this.natives[__[1]] : null;\n    };\n\n    /**\n     * Converts function to string, using encoding to handle native objects\n     * (Simple functions only. Does not support nesting)\n     * @param fun\n     * @returns {*}\n     */\n    static toString(fun) {\n        if (typeof fun !== 'function') {\n            return fun;\n        }\n        let __ = null;\n        if (((__ = fun.toString()).match(/.*\\[native code\\].*/)) != null) {\n            return `Native::${this.getFunctionName(fun)}`;\n        } else {\n            return __;\n        }\n    };\n\n    /**\n     *\n     * @returns {{Array: Array, ArrayBuffer: ArrayBuffer, Boolean: Boolean, Buffer: *, ArrayBuffer: ArrayBuffer, Date: Date, Number: Number, Object: Object, String: String, Function: *}}\n     */\n    static get natives() {\n        return {\n            Array,\n            ArrayBuffer,\n            Boolean,\n            Buffer,\n            ArrayBuffer,\n            Date,\n            Number,\n            Object,\n            String,\n            Function\n        };\n    }\n}\n",
+    "static": true,
+    "longname": "/Users/van/IdeaProjects/jsd-utils/src/function.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 1,
+    "kind": "class",
+    "name": "Fun",
+    "memberof": "src/function.js",
+    "static": true,
+    "longname": "src/function.js~Fun",
+    "access": "public",
+    "export": true,
+    "importPath": "jsd-utils/src/function.js",
+    "importStyle": "{Fun}",
+    "description": "",
+    "lineNumber": 5,
+    "interface": false
+  },
+  {
+    "__docId__": 2,
+    "kind": "method",
+    "name": "getFunctionName",
+    "memberof": "src/function.js~Fun",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/function.js~Fun.getFunctionName",
+    "access": "public",
+    "description": "Returns name of provided function",
+    "lineNumber": 11,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{*}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fun",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 3,
+    "kind": "method",
+    "name": "getConstructorName",
+    "memberof": "src/function.js~Fun",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/function.js~Fun.getConstructorName",
+    "access": "public",
+    "description": "Attempts to safely determine name of the Class Constructor returns null if undefined",
+    "lineNumber": 21,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{*}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fun",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 4,
+    "kind": "method",
+    "name": "construct",
+    "memberof": "src/function.js~Fun",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/function.js~Fun.construct",
+    "access": "public",
+    "description": "Invokes a Constructor with optional arguments array",
+    "lineNumber": 38,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "constructor",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "args",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 5,
+    "kind": "get",
+    "name": "factory",
+    "memberof": "src/function.js~Fun",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/function.js~Fun.factory",
+    "access": "public",
+    "description": "returns an arbitrary Function from array",
+    "lineNumber": 46,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{function(this:null)}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "function(this:null)"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 6,
+    "kind": "method",
+    "name": "fromString",
+    "memberof": "src/function.js~Fun",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/function.js~Fun.fromString",
+    "access": "public",
+    "description": "creates function from string (simple functions only -- does not support nesting)",
+    "lineNumber": 55,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{*}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "string",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 7,
+    "kind": "method",
+    "name": "toString",
+    "memberof": "src/function.js~Fun",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/function.js~Fun.toString",
+    "access": "public",
+    "description": "Converts function to string, using encoding to handle native objects\n(Simple functions only. Does not support nesting)",
+    "lineNumber": 70,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{*}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fun",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 8,
+    "kind": "get",
+    "name": "natives",
+    "memberof": "src/function.js~Fun",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/function.js~Fun.natives",
+    "access": "public",
+    "description": "",
+    "lineNumber": 86,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{{Array: Array, ArrayBuffer: ArrayBuffer, Boolean: Boolean, Buffer: *, ArrayBuffer: ArrayBuffer, Date: Date, Number: Number, Object: Object, String: String, Function: *}}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "{Array: Array, ArrayBuffer: ArrayBuffer, Boolean: Boolean, Buffer: *, ArrayBuffer: ArrayBuffer, Date: Date, Number: Number, Object: Object, String: String, Function: *}"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 9,
+    "kind": "file",
+    "name": "src/index.js",
+    "content": "/**\n * @public\n */\nexport {Fun} from './function';\n/**\n * @public\n */\nexport {Obj} from './object';\n/**\n * @public\n */\nexport {Str} from './string';\n/**\n * returns false if value is `null` or `undefined`\n * @public\n * @param value\n * @returns {boolean}\n */\nexport const exists = (value) => {\n    return typeof value !== 'undefined' && value !== null;\n};\n",
+    "static": true,
+    "longname": "/Users/van/IdeaProjects/jsd-utils/src/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 10,
+    "kind": "function",
+    "name": "exists",
+    "memberof": "src/index.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/index.js~exists",
+    "access": "public",
+    "export": true,
+    "importPath": "jsd-utils/src/index.js",
+    "importStyle": "{exists}",
+    "description": "returns false if value is `null` or `undefined`",
+    "lineNumber": 19,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 11,
+    "kind": "file",
+    "name": "src/object.js",
+    "content": "import {Fun} from './function';\n/**\n *\n * @param left\n * @param right\n * @param inclusive\n * @returns {Array}\n * @private\n */\nconst __range__ = (left, right, inclusive) => {\n    let range = [];\n    let ascending = left < right;\n    let end = !inclusive ? right : ascending ? right + 1 : right - 1;\n    for (let i = left; ascending ? i < end : i > end; ascending ? i++ : i--) {\n        range.push(i);\n    }\n    return range;\n};\n\n/**\n * @public\n */\nexport class Obj {\n    /**\n     * returns  name of Object type as string\n     * @param obj\n     */\n    static getTypeOf(obj) {\n        return Object.prototype.toString.call(obj).slice(8, -1);\n    }\n    /**\n     * returns `boolean` based on object passed as object param matching  object passed as kind param\n     * @param value\n     * @param kind\n     * @returns {boolean}\n     */\n    static isOfType(value, kind) {\n        return (this.getTypeOf(value)) === (Fun.getFunctionName(kind)) || value instanceof kind;\n    }\n\n    /**\n     * Transforms Object to name value paired Query String\n     * @param object\n     * @returns {string}\n     */\n    static objectToQuery(object = {})  {\n        let pairs = [];\n        let keys = Object.keys(object);\n        for (let i of __range__(0, (keys.length - 1), true)) {\n            pairs[i] = [keys[i], object[keys[i]]];\n        }\n        return (pairs.map((v, k) => v.join('=')) ).join('&');\n    }\n    /**\n     * Transforms name value paired Query String to Object\n     * @param string\n     * @returns {{}}\n     */\n    static queryToObject(string) {\n        let o = {};\n        decodeURIComponent(string).replace('?', '').split('&').forEach((v, k) => {\n            let p;\n            if ((p = v.split('=')).length === 2) {\n                return o[p[0]] = p[1];\n            }\n        });\n        return o;\n    }\n}\n",
+    "static": true,
+    "longname": "/Users/van/IdeaProjects/jsd-utils/src/object.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 12,
+    "kind": "function",
+    "name": "__range__",
+    "memberof": "src/object.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/object.js~__range__",
+    "access": "private",
+    "export": false,
+    "importPath": "jsd-utils/src/object.js",
+    "importStyle": null,
+    "description": "",
+    "lineNumber": 10,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Array}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "left",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "right",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "inclusive",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Array"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 13,
+    "kind": "class",
+    "name": "Obj",
+    "memberof": "src/object.js",
+    "static": true,
+    "longname": "src/object.js~Obj",
+    "access": "public",
+    "export": true,
+    "importPath": "jsd-utils/src/object.js",
+    "importStyle": "{Obj}",
+    "description": "",
+    "lineNumber": 23,
+    "interface": false
+  },
+  {
+    "__docId__": 14,
+    "kind": "method",
+    "name": "getTypeOf",
+    "memberof": "src/object.js~Obj",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/object.js~Obj.getTypeOf",
+    "access": "public",
+    "description": "returns  name of Object type as string",
+    "lineNumber": 28,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "obj",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 15,
+    "kind": "method",
+    "name": "isOfType",
+    "memberof": "src/object.js~Obj",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/object.js~Obj.isOfType",
+    "access": "public",
+    "description": "returns `boolean` based on object passed as object param matching  object passed as kind param",
+    "lineNumber": 37,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "kind",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 16,
+    "kind": "method",
+    "name": "objectToQuery",
+    "memberof": "src/object.js~Obj",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/object.js~Obj.objectToQuery",
+    "access": "public",
+    "description": "Transforms Object to name value paired Query String",
+    "lineNumber": 46,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "object",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 17,
+    "kind": "method",
+    "name": "queryToObject",
+    "memberof": "src/object.js~Obj",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/object.js~Obj.queryToObject",
+    "access": "public",
+    "description": "Transforms name value paired Query String to Object",
+    "lineNumber": 59,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{{}}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "string",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "{}"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 18,
+    "kind": "file",
+    "name": "src/string.js",
+    "content": "/**\n * @public\n */\nexport class Str {\n    /**\n     * @param string\n     * @returns capitalized string\n     */\n    static capitalize(string) {\n        if (string === null) {\n            return \"\";\n        }\n        if (typeof string !== 'string') {\n            string = string.toString();\n        }\n        return string.split(/[\\s]{1,}/).map((_) => {\n            return `${_.charAt(0).toUpperCase()}${_.slice(1)}`;\n        }).join(\" \");\n    }\n\n    /**\n     *\n     * @param string\n     * @returns strng with null chars removed\n     */\n    static stripNull(string) {\n        if (typeof string === 'undefined') {\n            return '';\n        }\n        return string.replace(/\\0/g, '');\n    }\n\n    /**\n     * escapes all regexp special characters in string\n     * @param string\n     * @returns {void|string|*}\n     */\n    static regexEscape(string) {\n        return string.replace(/[-\\/\\\\^$*+?.()|[\\]{}]/g, '\\\\$&');\n    }\n};\n",
+    "static": true,
+    "longname": "/Users/van/IdeaProjects/jsd-utils/src/string.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 19,
+    "kind": "class",
+    "name": "Str",
+    "memberof": "src/string.js",
+    "static": true,
+    "longname": "src/string.js~Str",
+    "access": "public",
+    "export": true,
+    "importPath": "jsd-utils/src/string.js",
+    "importStyle": "{Str}",
+    "description": "",
+    "lineNumber": 4,
+    "interface": false
+  },
+  {
+    "__docId__": 20,
+    "kind": "method",
+    "name": "capitalize",
+    "memberof": "src/string.js~Str",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/string.js~Str.capitalize",
+    "access": "public",
+    "description": "",
+    "lineNumber": 9,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "capitalized string"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "string",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "capitalized string"
+    }
+  },
+  {
+    "__docId__": 21,
+    "kind": "method",
+    "name": "stripNull",
+    "memberof": "src/string.js~Str",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/string.js~Str.stripNull",
+    "access": "public",
+    "description": "",
+    "lineNumber": 26,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "strng with null chars removed"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "string",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "strng with null chars removed"
+    }
+  },
+  {
+    "__docId__": 22,
+    "kind": "method",
+    "name": "regexEscape",
+    "memberof": "src/string.js~Str",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/string.js~Str.regexEscape",
+    "access": "public",
+    "description": "escapes all regexp special characters in string",
+    "lineNumber": 38,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{void|string|*}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "string",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "void",
+        "string",
+        "*"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "kind": "index",
+    "content": "jsd-utils\n=========\n\nSmall Collection of Object Utilities\n\n[![Build Status](https://travis-ci.org/webfreshener/jsd-utils.png)](https://travis-ci.org/webfreshener/jsd-utils)\n[![NPM Version](http://img.shields.io/npm/v/jsd-utils.svg)](https://www.npmjs.org/package/jsd-utils)\n\n\nMethods\n-----------\n\n#### getTypeOf(object)\nReturns name of Object type as string\n\n*example:*\n```\nconsole.log( Obj.getTypeOf( [] ) ); // prints 'Array'\n```\n\n#### isOfType(object, kind)\nReturns `boolean` based on object passed as object params matching\n\n*example:*\n```\nvar MyClass;\n\nMyClass = (function() {\n  function MyClass() {}\n\n  return MyClass;\n\n})();\nconsole.log( Obj.isOfType(new MyClass, MyClass) ); // prints 'true'\n```\n\n#### objectToQuery(object)\nTransforms Object to name value paired Query String\n\n*example:*\n```\nconsole.log( Obj.objectToQuery({name:'test',value:'foo'}) ); // prints 'name=test&value=foo'\n```\n\n#### queryToObject(string)\nTransforms name value paired Query String to Object\n\n*example:*\n```\nconsole.log( Obj.queryToObject('name=test&value=foo') ); // prints '{name:\\'test\\',value:\\'foo\\'}' \n```",
+    "longname": "/Users/van/IdeaProjects/jsd-utils/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"author\": \"Van Schroeder <van@webfreshener.com>\",\n  \"name\": \"jsd-utils\",\n  \"description\": \"Object, Function and String Utilities\",\n  \"keywords\": [\n    \"jsd\",\n    \"object\",\n    \"function\",\n    \"string\",\n    \"utilities\",\n    \"querify\",\n    \"encode\",\n    \"type\",\n    \"compare\",\n    \"utility\",\n    \"capitalize\",\n    \"stripnull\"\n  ],\n  \"version\": \"1.0.0-beta2\",\n  \"preferGlobal\": false,\n  \"main\": \"./index,js\",\n  \"licenses\": [\n    {\n      \"type\": \"MIT\",\n      \"url\": \"http://www.opensource.org/licenses/MIT\"\n    }\n  ],\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/webfreshener/jsd-utils.git\"\n  },\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"babel-cli\": \"^6.26.0\",\n    \"babel-core\": \"^6.26.0\",\n    \"babel-plugin-transform-remove-strict-mode\": \"0.0.2\",\n    \"babel-preset-env\": \"^1.6.1\",\n    \"babel-register\": \"^6.26.0\",\n    \"chai\": \"^4.1.2\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-accessor-plugin\": \"^1.0.0\",\n    \"esdoc-node\": \"^1.0.3\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.16.0\",\n    \"jest\": \"^22.1.4\",\n    \"mocha\": \"^5.0.0\",\n    \"webpack\": \"^3.10.0\"\n  },\n  \"homepage\": \"https://github.com/webfreshener/jsd-utils.git\",\n  \"scripts\": {\n    \"webpack\": \"webpack --config webpack.config.js\",\n    \"test\": \"jest\",\n    \"docs\": \"./node_modules/.bin/esdoc\"\n  }\n}\n",
+    "longname": "/Users/van/IdeaProjects/jsd-utils/package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]
