@@ -29,4 +29,13 @@ export class Str {
         }
         return string.replace(/\0/g, '');
     }
+
+    /**
+     * escapes all regexp special characters in string
+     * @param string
+     * @returns {void|string|*}
+     */
+    static regexEscape(string) {
+        return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    }
 };
