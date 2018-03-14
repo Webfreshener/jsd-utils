@@ -16,7 +16,7 @@
     "capitalize",
     "stripnull"
   ],
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta2",
   "preferGlobal": false,
   "main": "./index,js",
   "licenses": [

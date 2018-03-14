@@ -110,8 +110,6 @@ const exists = (value) => {
 
 
 
-
-
 /***/ }),
 /* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -2383,6 +2381,15 @@ class Str {
             return '';
         }
         return string.replace(/\0/g, '');
+    }
+
+    /**
+     * escapes all regexp special characters in string
+     * @param string
+     * @returns {void|string|*}
+     */
+    static regexEscape(string) {
+        return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Str;
