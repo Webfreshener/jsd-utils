@@ -1,6 +1,6 @@
 {
   "author": "Van Schroeder <van@webfreshener.com>",
-  "name": "jsd-utils",
+  "name": "ofs-utils",
   "description": "Object, Function and String Utilities",
   "keywords": [
     "jsd",
@@ -16,7 +16,7 @@
     "capitalize",
     "stripnull"
   ],
-  "version": "1.0.0-beta2",
+  "version": "1.0.0",
   "preferGlobal": false,
   "main": "./index,js",
   "licenses": [
@@ -27,7 +27,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/webfreshener/jsd-utils.git"
+    "url": "https://github.com/webfreshener/ofs-utils.git"
   },
   "dependencies": {},
   "devDependencies": {
@@ -46,9 +46,9 @@
     "mocha": "^5.0.0",
     "webpack": "^3.10.0"
   },
-  "homepage": "https://github.com/webfreshener/jsd-utils.git",
+  "homepage": "https://github.com/webfreshener/ofs-utils.git",
   "scripts": {
-    "webpack": "webpack --config webpack.config.js",
+    "build": "webpack --config webpack.config.js",
     "test": "jest",
     "docs": "./node_modules/.bin/esdoc"
   }

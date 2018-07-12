@@ -1,10 +1,10 @@
-jsd-utils
+ofs-utils
 =========
 
-Small Collection of Object Utilities
+Object, Function and String Utilities
 
-[![Build Status](https://travis-ci.org/webfreshener/jsd-utils.png)](https://travis-ci.org/webfreshener/jsd-utils)
-[![NPM Version](http://img.shields.io/npm/v/jsd-utils.svg)](https://www.npmjs.org/package/jsd-utils)
+[![Build Status](https://travis-ci.org/webfreshener/ofs-utils.png)](https://travis-ci.org/webfreshener/ofs-utils)
+[![NPM Version](http://img.shields.io/npm/v/ofs-utils.svg)](https://www.npmjs.org/package/ofs-utils)
 
 
 Methods

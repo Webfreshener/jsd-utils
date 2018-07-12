@@ -7,9 +7,9 @@ module.exports ={
         entry: './src/index.js'
     },
     output: {
-        filename: 'jsd-utils.js',
+        filename: 'ofs-utils.js',
         path: path.resolve(__dirname, 'dist'),
-        library: "jsdUtils",
+        library: "ofsUtils",
         libraryTarget: "umd",
     }
 };

@@ -1,1 +1,1 @@
-module.exports = require('./dist/jsd-utils');
+module.exports = require('./dist/ofs-utils');
