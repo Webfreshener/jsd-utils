@@ -6,6 +6,10 @@ Object, Function and String Utilities
 [![Build Status](https://travis-ci.org/Webfreshener/ofs-utils.png)](https://travis-ci.org/webfreshener/ofs-utils)
 [![NPM Version](http://img.shields.io/npm/v/ofs-utils.svg)](https://www.npmjs.org/package/ofs-utils)
 
+#### Installation Instructions
+```
+$ npm i ofs-utils 
+```
 
 Methods
 -----------
