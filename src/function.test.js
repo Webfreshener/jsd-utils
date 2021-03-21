@@ -13,7 +13,7 @@ describe("Function Utility Tests", () => {
     }
     it("should stringify a function", () => {
         str = Fun.toString(fun).replace(/[\n\t]*/g, "").replace(/[\s]{2,}/g, " ");
-        expect(str).toBe("function fun(foo, bar) { console.log(foo + \" \" + bar); }");
+        expect(str).toBe("function fun(foo, bar) { console.log(\"\".concat(foo, \" \").concat(bar)); }");
     });
     it("should revive a function from a string", () => {
         expect(typeof Fun.fromString(str)).toBe("function");
